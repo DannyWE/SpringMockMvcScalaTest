@@ -1,4 +1,6 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+import controller.ApplicationController;
+import controller.Dispatcher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,8 +14,11 @@ public class ControllerConfig {
     }
 
     @Bean
+    public Dispatcher dispatcher() { return new Dispatcher(); }
+
+    @Bean
     public ApplicationController applicationController() {
-        return new ApplicationController();
+        return new ApplicationController(dispatcher());
     }
 
 }
